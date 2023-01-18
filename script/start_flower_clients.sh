@@ -66,9 +66,9 @@ done
 
 # Print the Number of Flower Clients Launched.
 if [ $num_clients -eq 0 ] || [ $num_clients -gt 1 ]; then
-    echo "Launched $num_clients Flower Clients."
+    echo "Launched $num_clients Flower Clients!"
 else
-    echo "Launched $num_clients Flower Client."
+    echo "Launched $num_clients Flower Client!"
 fi
 
 # Wait for All Background Processes to Finish.

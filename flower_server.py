@@ -1,9 +1,9 @@
 from argparse import ArgumentParser
 from configparser import ConfigParser
-from logging import FileHandler, Formatter, getLevelName, Logger, StreamHandler
 from flwr.common import Metrics, NDArrays, Parameters
 from flwr.server import Server, ServerConfig, SimpleClientManager, start_server
 from flwr.server.strategy import FedAvg, FedAvgM, Strategy
+from logging import FileHandler, Formatter, getLevelName, Logger, StreamHandler
 from pathlib import Path
 from re import findall
 from typing import Any, List, Optional, Tuple
@@ -117,6 +117,9 @@ class FlowerServer:
             formatter = Formatter(fmt=logging_settings["format"],
                                   datefmt=logging_settings["date_format"])
             if logging_settings["log_to_file"]:
+                file_parents_path = findall("(.*/)", logging_settings["file_name"])
+                if file_parents_path:
+                    Path(file_parents_path[0]).mkdir(parents=True, exist_ok=True)
                 file_handler = FileHandler(filename=logging_settings["file_name"],
                                            mode=logging_settings["file_mode"],
                                            encoding=logging_settings["encoding"])
