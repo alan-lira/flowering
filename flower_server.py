@@ -356,8 +356,8 @@ class FlowerServer:
                 adjusted_value = old_value * factor
             elif operation_text == "Divide by":
                 adjusted_value = old_value / factor
-                if type(old_value) == int and type(factor) == int:
-                    adjusted_value = int(adjusted_value)
+            if type(old_value) == int:
+                adjusted_value = int(adjusted_value)
         return adjusted_value
 
     def dynamically_adjust_hyper_parameters(self,
